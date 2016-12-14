@@ -1,0 +1,43 @@
+publishing {
+    publications {
+        jar(MavenPublication) {
+            groupId libraryGroupId
+            version version
+            artifactId libraryArtifactId
+
+            artifact("$buildDir/libs/${project.name}-${version}.jar")
+        }
+        zip(MavenPublication) {
+            groupId libraryGroupId
+            version version
+            artifactId libraryArtifactId
+
+            artifact("$buildDir/distributions/${project.name}-${version}.zip")
+        }
+    }
+}
+
+artifactory {
+    contextUrl = "${artifactory_contextUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
+    publish {
+        repository {
+            repoKey = 'intellij_plugins_snapshot_local'
+            username = "${artifactory_user}"
+            password = "${artifactory_password}"
+            maven = true
+        }
+        defaults {
+            publications('jar', 'zip')
+            publishArtifacts = true
+            publishPom = true
+        }
+    }
+    resolve {
+        repository {
+            repoKey = 'intellij_plugins_snapshot'
+            username = "${artifactory_user}"
+            password = "${artifactory_password}"
+            maven = true
+        }
+    }
+}

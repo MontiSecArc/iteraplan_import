@@ -1,0 +1,61 @@
+group 'de.monticore.lang.montisecarc.generator'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext.kotlin_version = '1.0.5-2'
+    ext.msa_version = "0.8.9.SNAPSHOT"
+
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        maven { url 'http://dl.bintray.com/jetbrains/intellij-plugin-service' }
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "gradle.plugin.org.jetbrains:gradle-intellij-plugin:0.1.10"
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4+"
+    }
+}
+
+apply plugin: "com.jfrog.artifactory"
+apply plugin: 'maven-publish'
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+apply plugin: 'idea'
+apply plugin: 'org.jetbrains.intellij'
+intellij {
+    pluginName name
+    version ideaVersion
+
+    downloadSources Boolean.valueOf(downloadIdeaSources)
+    updateSinceUntilBuild = false
+
+    sandboxDirectory = "${rootProject.buildDir}/idea-sandbox"
+}
+
+sourceCompatibility = 1.5
+
+sourceSets {
+    main {
+        java.srcDirs "gen", "src/java"
+        kotlin.srcDirs "src/kotlin"
+        resources.srcDir "resources"
+    }
+}
+
+tasks.withType(JavaCompile) { options.encoding = 'UTF-8' }
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+apply from: "artifactory.gradle"

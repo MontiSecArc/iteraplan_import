@@ -1,0 +1,31 @@
+<idea-plugin version="4">
+    <id>de.monticore.lang.montisecarc.generator.docker.DockerGenerator</id>
+    <name>Docker Generator</name>
+    <version>1.0.0</version>
+    <vendor email="thomas.buning@rwth-aachen.de"/>
+
+    <description><![CDATA[
+      Docker Generator
+    ]]></description>
+
+    <change-notes><![CDATA[
+    ]]>
+    </change-notes>
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="141.0"/>
+    <depends>de.monticore.lang.montisecarc.MontiSecArcLanguagePlugin</depends>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <extensions defaultExtensionNs="com.intellij">
+
+    </extensions>
+
+
+    <actions>
+        <action id="de.monticore.lang.montisecarc.generator.docker.actions.GenerateDockerFile" class="de.monticore.lang.montisecarc.generator.docker.actions.GenerateDockerFile"
+                text="Generate Dockerfile" description="Generate Dockerfile from MSA File">
+            <add-to-group group-id="MSAGenerators"/>
+        </action>
+    </actions>
+</idea-plugin>
