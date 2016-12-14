@@ -1,3 +1,5 @@
+apply plugin: 'maven-publish'
+
 publishing {
     publications {
         jar(MavenPublication) {
@@ -8,7 +10,7 @@ publishing {
             artifact("$buildDir/libs/${project.name}-${version}.jar")
         }
         zip(MavenPublication) {
-            groupId libraryGroupId
+            groupId "${libraryGroupId}.plugin"
             version version
             artifactId libraryArtifactId
 
@@ -25,11 +27,11 @@ artifactory {
             username = "${artifactory_user}"
             password = "${artifactory_password}"
             maven = true
-        }
-        defaults {
-            publications('jar', 'zip')
-            publishArtifacts = true
-            publishPom = true
+            ivy {
+                ivyLayout = '[organization]/[module]/ivy-[revision].xml'
+                artifactLayout = '[organization]/[module]/[revision]/[module]-[revision](-[classifier]).[ext]'
+                mavenCompatible = false
+            }
         }
     }
     resolve {
@@ -38,6 +40,11 @@ artifactory {
             username = "${artifactory_user}"
             password = "${artifactory_password}"
             maven = true
+            ivy {
+                ivyLayout = '[organization]/[module]/ivy-[revision].xml'
+                artifactLayout = '[organization]/[module]/[revision]/[module]-[revision](-[classifier]).[ext]'
+                mavenCompatible = false
+            }
         }
     }
 }

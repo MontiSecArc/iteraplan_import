@@ -1,27 +1,32 @@
-group 'de.monticore.lang.montisecarc.generator'
-version '1.0-SNAPSHOT'
-
 buildscript {
     ext.kotlin_version = '1.0.5-2'
     ext.msa_version = "0.8.9.SNAPSHOT"
-
+    ext.msa_name = "IntelliJ_MSA_Language"
     repositories {
-        mavenCentral()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
+        jcenter()
         maven { url 'http://dl.bintray.com/jetbrains/intellij-plugin-service' }
-        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+        maven {
+            url 'http://138.68.65.103:8081/artifactory/plugins-release'
+            credentials {
+                username = "${artifactory_user}"
+                password = "${artifactory_password}"
+            }
+        }
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "gradle.plugin.org.jetbrains:gradle-intellij-plugin:0.1.10"
-        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4+"
     }
 }
 
-apply plugin: "com.jfrog.artifactory"
-apply plugin: 'maven-publish'
+plugins {
+    id "org.jetbrains.intellij" version "0.1.10"
+    id "com.jfrog.artifactory" version "4.4.0"
+}
+
+apply from: "artifactory.gradle"
+
+group 'de.monticore.lang.montisecarc.generator'
+version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
@@ -37,6 +42,22 @@ intellij {
     sandboxDirectory = "${rootProject.buildDir}/idea-sandbox"
 }
 
+project.afterEvaluate {
+    def prepareSandboxTask = project.tasks.findByName("prepareSandbox")
+    prepareSandboxTask.doLast {
+        def msaId = "$msa_name-$msa_version"
+        def fileList = new File("$prepareSandboxTask.destinationDir/${project.name}/lib/").listFiles()
+
+        fileList.each {
+
+            if(it.name.contains(msaId) || it.name.contains("kotlin")) {
+
+                delete(it)
+            }
+        }
+    }
+}
+
 sourceCompatibility = 1.5
 
 sourceSets {
@@ -50,12 +71,10 @@ sourceSets {
 tasks.withType(JavaCompile) { options.encoding = 'UTF-8' }
 
 repositories {
-    mavenCentral()
+    jcenter()
 }
 
 dependencies {
+    compile group: "de.monticore.lang.montisecarc", name:"$msa_name", version:"$msa_version"
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    testCompile group: 'junit', name: 'junit', version: '4.11'
 }
-
-apply from: "artifactory.gradle"
