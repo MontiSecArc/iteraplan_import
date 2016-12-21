@@ -1,11 +1,9 @@
-package de.monticore.lang.montisecarc.generator.docker.actions
+package de.monticore.lang.montisecarc.import.data
 
-import de.monticore.lang.montisecarc.generator.GeneratorAction
-import de.monticore.lang.montisecarc.generator.docker.DockerGenerator
-import de.monticore.lang.montisecarc.generator.docker.DockerImplGenerator
+import com.google.gson.annotations.SerializedName
 
 /**
- * Copyright 2016 Thomas Buning
+ * Copyright 2016 thomasbuning
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,4 +18,5 @@ import de.monticore.lang.montisecarc.generator.docker.DockerImplGenerator
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-class GenerateDockerFile: GeneratorAction(listOf(DockerGenerator(), DockerImplGenerator()))
+data class Node(@SerializedName("id") val id: String,
+                @SerializedName("name") val name: String?)

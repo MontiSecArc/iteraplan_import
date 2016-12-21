@@ -1,7 +1,9 @@
-package de.monticore.lang.montisecarc.generator.docker.data
+package de.monticore.lang.montisecarc.import.data
+
+import com.google.gson.annotations.SerializedName
 
 /**
- * Copyright 2016 Thomas Buning
+ * Copyright 2016 thomasbuning
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,4 +18,5 @@ package de.monticore.lang.montisecarc.generator.docker.data
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-data class DockerService(val serviceName: String, val imageName: String?)
+data class QueryResult (@SerializedName("query") val query: String,
+                        @SerializedName("result") val results: List<Result>)

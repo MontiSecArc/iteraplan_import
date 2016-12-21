@@ -1,11 +1,11 @@
 <idea-plugin version="4">
-    <id>de.monticore.lang.montisecarc.generator.docker.DockerGenerator</id>
-    <name>Docker Generator</name>
+    <id>de.monticore.lang.montisecarc.import.ItestraImporter</id>
+    <name>Itestra Importer</name>
     <version>1.0.0</version>
     <vendor email="thomas.buning@rwth-aachen.de"/>
 
     <description><![CDATA[
-      Docker Generator
+      Itestra Importer
     ]]></description>
 
     <change-notes><![CDATA[
@@ -14,6 +14,7 @@
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
     <idea-version since-build="141.0"/>
     <depends>de.monticore.lang.montisecarc.MontiSecArcLanguagePlugin</depends>
+    <depends optional="true">com.neueda4j.intellij.plugin.cypher</depends>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
@@ -23,9 +24,8 @@
 
 
     <actions>
-        <action id="de.monticore.lang.montisecarc.generator.docker.actions.GenerateDockerFile" class="de.monticore.lang.montisecarc.generator.docker.actions.GenerateDockerFile"
-                text="Generate Dockerfile" description="Generate Dockerfile from MSA File">
-            <add-to-group group-id="MSAGenerators"/>
+        <action id="MSA.NewMSAFileFromItestra" class="de.monticore.lang.montisecarc.import.actions.NewMSAFileFromItestra" text="Import from Itestra Export" description="Import from Itestra Export">
+            <add-to-group group-id="NewGroup" relative-to-action="MSA.NewMSAFile" anchor="after"/>
         </action>
     </actions>
 </idea-plugin>

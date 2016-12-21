@@ -1,0 +1,3 @@
+[submodule "IntelliJ_MSA"]
+	path = IntelliJ_MSA
+	url = https://git.rwth-aachen.de/ma_buning/msa.git

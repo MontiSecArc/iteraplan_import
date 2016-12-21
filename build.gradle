@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.0.5-2'
+    ext.kotlin_version = '1.0.5-3'
     ext.msa_version = "0.8.9.SNAPSHOT"
     ext.msa_name = "IntelliJ_MSA_Language"
     repositories {
@@ -25,7 +25,7 @@ plugins {
 
 apply from: "artifactory.gradle"
 
-group 'de.monticore.lang.montisecarc.generator'
+group 'de.monticore.lang.montisecarc.import'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
@@ -40,6 +40,8 @@ intellij {
     updateSinceUntilBuild = false
 
     sandboxDirectory = "${rootProject.buildDir}/idea-sandbox"
+
+    plugins = ['com.neueda4j.intellij.plugin.cypher:2.2.0']
 }
 
 project.afterEvaluate {
@@ -50,7 +52,7 @@ project.afterEvaluate {
 
         fileList.each {
 
-            if(it.name.contains(msaId) || it.name.contains("kotlin")) {
+            if(!it.name.contains("ItestraImporter")) {
 
                 delete(it)
             }
@@ -75,6 +77,8 @@ repositories {
 }
 
 dependencies {
-    compile group: "de.monticore.lang.montisecarc", name:"$msa_name", version:"$msa_version"
+    compile(project("ItestraImporter"))
+    compile(project("IntelliJ_MSA"))
+    //compile group: "de.monticore.lang.montisecarc", name:"$msa_name", version:"$msa_version"
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }

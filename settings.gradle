@@ -1,1 +1,6 @@
-rootProject.name = 'DockerGenerator'
+rootProject.name = 'ItestraImporterPlugin'
+
+include 'ItestraImporter'
+include 'IntelliJ_MSA'
+include 'GraphDatabase'
+project(":GraphDatabase").projectDir = new File("IntelliJ_MSA/graphdatabase/")
