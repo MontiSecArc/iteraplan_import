@@ -22,6 +22,8 @@ import com.google.gson.annotations.SerializedName
 data class Result(@SerializedName("id") val ids: List<Int>,
                   @SerializedName("name") val name: String,
                   @SerializedName("parent") val parents: List<Node>?,
+                  @SerializedName("informationSystemRelease") val informationSystemRelease: List<Node>?,
+                  @SerializedName("businessObject") val businessObject: List<Node>?,
                   @SerializedName("infrastructureElement") @Expose val infrastructureElements: List<Node>?,
                   @SerializedName("baseComponents") @Expose val baseComponents: List<Node>?,
                   @SerializedName("Tier") @Expose val tiers: List<String>?

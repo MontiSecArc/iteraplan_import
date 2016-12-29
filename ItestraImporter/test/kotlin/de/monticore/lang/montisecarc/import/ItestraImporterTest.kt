@@ -37,7 +37,7 @@ class ItestraImporterTest {
             file.mkdirs()
         }
 
-        val import = ItestraImporter(File("/Users/thomasbuning/Desktop/ArcSample/anonym.json"), file.path, packageIdentifier)
+        val import = ItestraImporter(File("/Users/thomasbuning/Desktop/anonym.json"), file.path, packageIdentifier)
         import.toMSAFiles()
     }
 }
