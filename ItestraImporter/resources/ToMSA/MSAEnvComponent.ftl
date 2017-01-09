@@ -11,7 +11,6 @@ import java.lang.String;
 
 component ${componentName} {
 
-    accesscontrol off;
     <#if trustlevel??>trustlevel ${trustlevel};</#if>
 
     <#if inNeeded??>port in String inDummy;</#if>
