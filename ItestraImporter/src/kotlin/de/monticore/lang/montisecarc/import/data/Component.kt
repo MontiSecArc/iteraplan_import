@@ -17,7 +17,10 @@ package de.monticore.lang.montisecarc.import.data
  * limitations under the License.
  */
 
-data class Component(val id: String, val name: String?, var trustLevel: Int?, var children: List<Component> = emptyList(), var connections: List<Connection> = emptyList(), var parent: Component? = null) {
+data class Component(val id: String, val foundName: String?, var trustLevel: Int?, var children: List<Component> = emptyList(), var connections: List<Connection> = emptyList(), var parent: Component? = null) {
+
+    // Remove characters that cannot appear in a component name / instance name
+    val name = foundName?.replace(Regex("[^a-zA-Z0-9-_]"), "")
 
     val typeName: String = name?.capitalize() ?: "T$id"
     val instanceName: String = name?.decapitalize() ?: "i$id"
