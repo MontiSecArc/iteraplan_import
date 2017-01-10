@@ -3,7 +3,7 @@ The Itestra Importer plugin allows the user to import architecture information f
 
 # Contents
 - [Quickstart](https://git.rwth-aachen.de/ma_buning/itestra_importer/edit/master/README.md#quickstart)
-- [Standalone Transformation]((https://git.rwth-aachen.de/ma_buning/itestra_importer/edit/master/README.md#standalone_transformation)
+- [Standalone Transformation](https://git.rwth-aachen.de/ma_buning/itestra_importer/edit/master/README.md#standalone_transformation)
 
 # Quickstart 
 1. Check-Out project:
