@@ -1,6 +1,11 @@
 # About
 The Itestra Importer plugin allows the user to import architecture information from an existing system into a MontiSecArc architecture description. This allows the security export to run flaw analysis on the architectures with the toolchain created for the IntelliJ IDEA platform.
 
+**Downloads**
+
+[]() &#8226; []()
+
+
 # Contents
 - [Quickstart](https://git.rwth-aachen.de/ma_buning/itestra_importer/edit/master/README.md#quickstart)
 - [Standalone Transformation](https://git.rwth-aachen.de/ma_buning/itestra_importer/edit/master/README.md#standalone_transformation)
