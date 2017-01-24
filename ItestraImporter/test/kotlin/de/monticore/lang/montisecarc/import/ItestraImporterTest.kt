@@ -29,7 +29,7 @@ class ItestraImporterTest {
     @DisplayName("Import Itestra from File")
     fun importTest(testInfo: TestInfo) {
 
-        val packageIdentifier = "itestra"
+        val packageIdentifier = "de.monticore.lang.montisecarc.graphquery.components"
 
         val file = File("/Development/RWTH/Masterarbeit/ItestraImporterPlugin/ItestraImporter/gen/${packageIdentifier.replace(".", "/")}")
         if (!file.exists()) {

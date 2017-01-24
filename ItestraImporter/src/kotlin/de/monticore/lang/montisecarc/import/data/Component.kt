@@ -70,6 +70,18 @@ fun Component.findCommonAncestor(other: Component): Component? {
     return secondParent
 }
 
+fun Component.getPackageIdentifier(): String {
+
+    var identifier = this.typeName
+    var parent = this.parent
+    while (parent != null) {
+
+        identifier = parent.typeName + "." + identifier
+        parent = parent.parent
+    }
+
+    return identifier
+}
 
 fun Component.getPath(to: Component): String? = this.getPath(to, emptyList())?.map { it.instanceName }?.joinToString(".")
 

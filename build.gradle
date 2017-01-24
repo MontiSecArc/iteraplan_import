@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.0.5-3'
+    ext.kotlin_version = '1.0.6'
     ext.msa_version = "0.8.9.SNAPSHOT"
     ext.msa_name = "IntelliJ_MSA_Language"
     repositories {
@@ -47,7 +47,7 @@ intellij {
 project.afterEvaluate {
     def prepareSandboxTask = project.tasks.findByName("prepareSandbox")
     prepareSandboxTask.doLast {
-        def msaId = "$msa_name-$msa_version"
+
         def fileList = new File("$prepareSandboxTask.destinationDir/${project.name}/lib/").listFiles()
 
         fileList.each {

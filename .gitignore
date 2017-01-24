@@ -104,3 +104,4 @@ gradle-app.setting
 /gen/graph_db
 
 ItestraImporter/gen
+ItestraImporter/build
