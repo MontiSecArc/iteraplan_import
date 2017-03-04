@@ -1,4 +1,4 @@
-package de.monticore.lang.montisecarc.import.data
+package de.monticore.lang.montisecarc.data
 
 import com.google.gson.annotations.SerializedName
 
@@ -18,5 +18,5 @@ import com.google.gson.annotations.SerializedName
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-data class QueryResult (@SerializedName("query") val query: String,
-                        @SerializedName("result") val results: List<Result>)
+data class Node(@SerializedName("id") val id: String,
+                @SerializedName("name") val name: String?)

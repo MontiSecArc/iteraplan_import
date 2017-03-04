@@ -21,4 +21,4 @@ The Itestra Importer plugin allows the user to import architecture information f
 4. Import new architecture from json file by selecting File > New > Import from Itestra Export 
 
 # Standalone Transformation
-To test the transformation into MontiSecArc files, no integration into IntelliJ IDEA necessary. The submodule *ItestraImporter* has a test-case where the imported file can be selected and therefore, the import can be tested. Furthermore, the class *Main* can act as a single jar, providing everything to kick-off an import from the command-line.
+To test the transformation into MontiSecArc files, no integration into IntelliJ IDEA necessary. The submodule *IteraplanImporter* has a test-case where the imported file can be selected and therefore, the import can be tested. Furthermore, the class *Main* can act as a single jar, providing everything to kick-off an import from the command-line.

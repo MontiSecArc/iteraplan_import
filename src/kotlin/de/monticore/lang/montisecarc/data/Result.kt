@@ -1,7 +1,6 @@
-package de.monticore.lang.montisecarc.import.data
+package de.monticore.lang.montisecarc.data
 
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
+import de.monticore.lang.montisecarc.import.data.Component
 
 /**
  * Copyright 2016 Thomas Buning
@@ -19,14 +18,14 @@ import com.google.gson.annotations.SerializedName
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-data class Result(@SerializedName("id") val ids: List<Int>,
-                  @SerializedName("name") val name: String,
-                  @SerializedName("parent") val parents: List<Node>?,
-                  @SerializedName("informationSystemRelease") val informationSystemRelease: List<Node>?,
-                  @SerializedName("businessObject") val businessObject: List<Node>?,
-                  @SerializedName("infrastructureElement") @Expose val infrastructureElements: List<Node>?,
-                  @SerializedName("baseComponents") @Expose val baseComponents: List<Node>?,
-                  @SerializedName("Tier") @Expose val tiers: List<String>?
+data class Result(@com.google.gson.annotations.SerializedName("id") val ids: List<Int>,
+                  @com.google.gson.annotations.SerializedName("name") val name: String,
+                  @com.google.gson.annotations.SerializedName("parent") val parents: List<Node>?,
+                  @com.google.gson.annotations.SerializedName("informationSystemRelease") val informationSystemRelease: List<Node>?,
+                  @com.google.gson.annotations.SerializedName("businessObject") val businessObject: List<Node>?,
+                  @com.google.gson.annotations.SerializedName("infrastructureElement") @com.google.gson.annotations.Expose val infrastructureElements: List<Node>?,
+                  @com.google.gson.annotations.SerializedName("baseComponents") @com.google.gson.annotations.Expose val baseComponents: List<Node>?,
+                  @com.google.gson.annotations.SerializedName("Tier") @com.google.gson.annotations.Expose val tiers: List<String>?
                   )
 
 

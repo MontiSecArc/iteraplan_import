@@ -1,6 +1,5 @@
-rootProject.name = 'ItestraImporterPlugin'
+rootProject.name = 'IteraplanImporterPlugin'
 
-include 'ItestraImporter'
 include 'IntelliJ_MSA'
 include 'GraphDatabase'
 project(":GraphDatabase").projectDir = new File("IntelliJ_MSA/graphdatabase/")

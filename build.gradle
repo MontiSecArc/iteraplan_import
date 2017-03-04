@@ -1,29 +1,16 @@
 buildscript {
-    ext.kotlin_version = '1.0.6'
-    ext.msa_version = "0.8.9.SNAPSHOT"
-    ext.msa_name = "IntelliJ_MSA_Language"
     repositories {
         jcenter()
-        maven { url 'http://dl.bintray.com/jetbrains/intellij-plugin-service' }
         maven {
-            url 'http://138.68.65.103:8081/artifactory/plugins-release'
-            credentials {
-                username = "${artifactory_user}"
-                password = "${artifactory_password}"
-            }
+            url "https://plugins.gradle.org/m2/"
         }
     }
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "gradle.plugin.org.jetbrains.intellij.plugins:gradle-intellij-plugin:0.2.5"
     }
 }
 
-plugins {
-    id "org.jetbrains.intellij" version "0.1.10"
-    id "com.jfrog.artifactory" version "4.4.0"
-}
-
-apply from: "artifactory.gradle"
 
 group 'de.monticore.lang.montisecarc.import'
 version '1.0-SNAPSHOT'
@@ -32,6 +19,7 @@ apply plugin: 'java'
 apply plugin: 'kotlin'
 apply plugin: 'idea'
 apply plugin: 'org.jetbrains.intellij'
+
 intellij {
     pluginName name
     version ideaVersion
@@ -41,26 +29,10 @@ intellij {
 
     sandboxDirectory = "${rootProject.buildDir}/idea-sandbox"
 
-    plugins = ['com.neueda4j.intellij.plugin.cypher:2.2.0']
+    plugins = ['de.monticore.lang.montisecarc.MontiSecArcLanguagePlugin:0.8.10.SNAPSHOT', 'com.neueda4j.intellij.plugin.cypher:2.4.1']
 }
 
-project.afterEvaluate {
-    def prepareSandboxTask = project.tasks.findByName("prepareSandbox")
-    prepareSandboxTask.doLast {
-
-        def fileList = new File("$prepareSandboxTask.destinationDir/${project.name}/lib/").listFiles()
-
-        fileList.each {
-
-            if(!it.name.contains("ItestraImporter")) {
-
-                delete(it)
-            }
-        }
-    }
-}
-
-sourceCompatibility = 1.5
+sourceCompatibility = 1.8
 
 sourceSets {
     main {
@@ -77,8 +49,7 @@ repositories {
 }
 
 dependencies {
-    compile(project("ItestraImporter"))
-    compile(project("IntelliJ_MSA"))
+    compileOnly(project("IntelliJ_MSA"))
     //compile group: "de.monticore.lang.montisecarc", name:"$msa_name", version:"$msa_version"
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 }

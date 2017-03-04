@@ -1,5 +1,5 @@
 <idea-plugin version="4">
-    <id>de.monticore.lang.montisecarc.import.ItestraImporter</id>
+    <id>>de.monticore.lang.montisecarc.import.ItestraImporter</id>
     <name>Itestra Importer</name>
     <version>1.0.0</version>
     <vendor email="thomas.buning@rwth-aachen.de"/>
@@ -12,9 +12,10 @@
     ]]>
     </change-notes>
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-    <idea-version since-build="141.0"/>
+    <idea-version since-build="143.0"/>
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
     <depends>de.monticore.lang.montisecarc.MontiSecArcLanguagePlugin</depends>
-    <depends optional="true">com.neueda4j.intellij.plugin.cypher</depends>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
@@ -24,7 +25,7 @@
 
 
     <actions>
-        <action id="MSA.NewMSAFileFromItestra" class="de.monticore.lang.montisecarc.import.actions.NewMSAFileFromItestra" text="Import from Itestra Export" description="Import from Itestra Export">
+        <action id="MSA.NewMSAFileFromItestra" class="de.monticore.lang.montisecarc.import.actions.NewMSAFileFromIteraplan" text="Import from Itestra Export" description="Import from Itestra Export">
             <add-to-group group-id="NewGroup" relative-to-action="MSA.NewMSAFile" anchor="after"/>
         </action>
     </actions>

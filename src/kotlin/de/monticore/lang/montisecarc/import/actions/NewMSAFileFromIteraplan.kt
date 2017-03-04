@@ -1,6 +1,7 @@
-package de.monticore.lang.montisecarc.import.data
+package de.monticore.lang.montisecarc.import.actions
 
-import com.google.gson.annotations.SerializedName
+import IteraplanImporter
+import de.monticore.lang.montisecarc.import.data.NewMSAFileFromImporter
 
 /**
  * Copyright 2016 thomasbuning
@@ -18,5 +19,5 @@ import com.google.gson.annotations.SerializedName
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-data class Node(@SerializedName("id") val id: String,
-                @SerializedName("name") val name: String?)
+class NewMSAFileFromIteraplan : NewMSAFileFromImporter(IteraplanImporter())
+
