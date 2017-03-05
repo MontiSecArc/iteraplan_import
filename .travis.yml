@@ -1,0 +1,30 @@
+language: java
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+
+before_deploy:
+  - export RELEASE_ZIP_FILE=$(ls build/distributions/*.zip)
+  - echo "deploying $RELEASE_ZIP_FILE to GitHub releases"
+
+jdk:
+  - oraclejdk8
+
+script:
+  - "./gradlew clean build buildPlugin"
+
+deploy:
+  provider: releases
+  api_key:
+    secure: MF8ElXI8F/wVz5or2CBbz7hy7pDSCBFVo8tDiKbaIyKwqbJ2+h0j8tshGzDuFFIfAnRPPUFsmVC6ES+j4neUimlyuvDIowfYUmlOszXMoZTItilR5++XDPmYcOejleomYfwnbicX0xbvs/bHxTyIP9VZ6JbpkhFpmXVB3OuhlTA0zKikw0LCrmHrDoQhMktqdb7Cys15yxEo4KI091VjoA2trKMimg4Mt/cg1Mnvkj3VdFTjtMJtdLzy/OnXOPkcSRI/pepUxQ062GODmPrNTLvyPdprap2pT7tOoRc7eyb17IMSIZCgh1inlvR88v537F+2/pRH51fsFwbtohH3dsykKyFDGWeWFjg3I1D8KrrEStTDRfY4rlTtdB8xdsOtjdR1S9UAoDH/TsnsvtflQFNP0CQd1DPoKHChlKbNPtEsdZDVV8KDGjUMiat4Y9PJrcNIcXBpURf+EKeFNKwO+uRbr5Kq11ZrWo+75jpZD0mc63XvERlpL8mf0Hd9zwoYU4Djldhi4GQ8IAI04u4BQc4V2z+agnJ/KGBKHxopjk/Dzf/g7QrdLnsqdaGUbclEToRUCnhsqN9IjjVQbz+gkr/35GkWhR01Y5q6l1XV4IFa2d6igWQHfyqSNNOwH0amJOJLZksRbVO2n1IzJyyS4zdr2GCwEJjWsV1Gm7uu7cs=
+  file: "${RELEASE_ZIP_FILE}"
+  file_glob: true
+  skip_cleanup: true
+  on:
+    repo: MontiSecArc/iteraplan_import
+    tags: true
