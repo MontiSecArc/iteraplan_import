@@ -1,11 +1,11 @@
 <idea-plugin version="4">
-    <id>>de.monticore.lang.montisecarc.import.ItestraImporter</id>
-    <name>Itestra Importer</name>
+    <id>>de.monticore.lang.montisecarc.import.IteraplanImporter</id>
+    <name>MontiSecArc Iteraplan Importer</name>
     <version>1.0.0</version>
     <vendor email="thomas.buning@rwth-aachen.de"/>
 
     <description><![CDATA[
-      Itestra Importer
+      The Iteraplan Importer plugin allows the user to import architecture information from an existing system into a MontiSecArc architecture description. This allows the security export to run flaw analysis on the architectures with the toolchain created for the IntelliJ IDEA platform.
     ]]></description>
 
     <change-notes><![CDATA[
@@ -25,7 +25,7 @@
 
 
     <actions>
-        <action id="MSA.NewMSAFileFromItestra" class="de.monticore.lang.montisecarc.import.actions.NewMSAFileFromIteraplan" text="Import from Itestra Export" description="Import from Itestra Export">
+        <action id="MSA.NewMSAFileFromIteraplan" class="de.monticore.lang.montisecarc.import.actions.NewMSAFileFromIteraplan" text="Import from Iteraplan" description="Import from Iteraplan">
             <add-to-group group-id="NewGroup" relative-to-action="MSA.NewMSAFile" anchor="after"/>
         </action>
     </actions>

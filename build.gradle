@@ -13,7 +13,6 @@ buildscript {
 
 
 group 'de.monticore.lang.montisecarc.import'
-version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
@@ -36,7 +35,7 @@ sourceCompatibility = 1.8
 
 sourceSets {
     main {
-        java.srcDirs "gen", "src/java"
+        java.srcDirs "src/java"
         kotlin.srcDirs "src/kotlin"
         resources.srcDir "resources"
     }
@@ -46,6 +45,22 @@ tasks.withType(JavaCompile) { options.encoding = 'UTF-8' }
 
 repositories {
     jcenter()
+}
+
+project.afterEvaluate {
+
+    def prepareSandboxTask = project.tasks.findByName("prepareSandbox")
+    prepareSandboxTask.doLast {
+
+        def libFiles = new File("$prepareSandboxTask.destinationDir/${project.name}/lib/")
+        libFiles.listFiles().each {
+
+            if(!it.name.contains("Iteraplan")) {
+
+                delete(it)
+            }
+        }
+    }
 }
 
 dependencies {
