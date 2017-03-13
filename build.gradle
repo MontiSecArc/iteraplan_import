@@ -2,12 +2,15 @@ buildscript {
     repositories {
         jcenter()
         maven {
-            url "https://plugins.gradle.org/m2/"
+            url "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+        maven {
+            url 'http://dl.bintray.com/jetbrains/intellij-plugin-service'
         }
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-        classpath "gradle.plugin.org.jetbrains.intellij.plugins:gradle-intellij-plugin:0.2.5"
+        classpath "org.jetbrains.intellij.plugins:gradle-intellij-plugin:0.2.0-SNAPSHOT"
     }
 }
 
@@ -23,12 +26,7 @@ intellij {
     pluginName name
     version ideaVersion
 
-    downloadSources Boolean.valueOf(downloadIdeaSources)
-    updateSinceUntilBuild = false
-
-    sandboxDirectory = "${rootProject.buildDir}/idea-sandbox"
-
-    plugins = ['de.monticore.lang.montisecarc.MontiSecArcLanguagePlugin:0.8.10.SNAPSHOT', 'com.neueda4j.intellij.plugin.cypher:2.4.1']
+    plugins = [project('IntelliJ_MSA'), project('GraphDatabase'), 'com.neueda4j.intellij.plugin.cypher:2.4.1']
 }
 
 sourceCompatibility = 1.8
@@ -41,12 +39,6 @@ sourceSets {
     }
 }
 
-tasks.withType(JavaCompile) { options.encoding = 'UTF-8' }
-
-repositories {
-    jcenter()
-}
-
 project.afterEvaluate {
 
     def prepareSandboxTask = project.tasks.findByName("prepareSandbox")
@@ -55,7 +47,7 @@ project.afterEvaluate {
         def libFiles = new File("$prepareSandboxTask.destinationDir/${project.name}/lib/")
         libFiles.listFiles().each {
 
-            if(!it.name.contains("Iteraplan")) {
+            if(it.name.contains("kotlin")) {
 
                 delete(it)
             }
@@ -63,8 +55,13 @@ project.afterEvaluate {
     }
 }
 
+tasks.withType(JavaCompile) { options.encoding = 'UTF-8' }
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
 dependencies {
-    compileOnly(project("IntelliJ_MSA"))
-    //compile group: "de.monticore.lang.montisecarc", name:"$msa_name", version:"$msa_version"
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 }

@@ -1,7 +1,7 @@
 <idea-plugin version="4">
     <id>>de.monticore.lang.montisecarc.import.IteraplanImporter</id>
     <name>MontiSecArc Iteraplan Importer</name>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <vendor email="thomas.buning@rwth-aachen.de"/>
 
     <description><![CDATA[
